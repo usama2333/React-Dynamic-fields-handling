@@ -15,6 +15,23 @@ import ExpensesFilter from './ExpensesFilter';
     // console.log(filteredYear);
   }
 
+  const filteredExpenses = props.items.filter((expense) => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
+
+  let expensesContent = <p>No expenses found.</p>;
+
+  if (filteredExpenses.length > 0) {
+    expensesContent = filteredExpenses.map((expense) => (
+      <ExpenseItem
+        key={expense.id}
+        title={expense.title}
+        amount={expense.amount}
+        date={expense.date}
+      />
+    ));
+  }
+
   console.log('testttttttttt');
   console.log(props.items);
 
@@ -24,13 +41,29 @@ import ExpensesFilter from './ExpensesFilter';
     <ExpensesFilter selected = {filteredYear} onChangeFilter = {filterChangeHandler} />
 
     
-    {props.items.map((expense) => (
+    {/* This method also works but it cannot check it no year data is found */}
+
+    {/* {filteredExpenses.map((expense) => (
         <ExpenseItem
+            key = {expense.id}
             title = {expense.title}
             amount = {expense.amount}
             date = {expense.date}
          />
-    ))};
+    ))} */}
+
+    {/* This displays all the data avaliable */}
+
+      {/* {props.items.map((expense) => (
+        <ExpenseItem
+            key = {expense.id}
+            title = {expense.title}
+            amount = {expense.amount}
+            date = {expense.date}
+         />
+    ))} */}
+
+    {expensesContent}
 
      {/* <ExpenseItem 
      title = {props.items[0].title}
