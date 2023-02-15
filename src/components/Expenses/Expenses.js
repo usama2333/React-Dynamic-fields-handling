@@ -3,6 +3,8 @@ import './Expenses.css';
 import ExpenseItem from './ExpenseItem';
 import Card from '../UI/Card';
 import ExpensesFilter from './ExpensesFilter';
+import ExpensesList from './ExpensesList';
+import ExpensesChart from './ExpensesChart';
 
 
  const Expenses = (props) => {
@@ -19,18 +21,20 @@ import ExpensesFilter from './ExpensesFilter';
     return expense.date.getFullYear().toString() === filteredYear;
   });
 
-  let expensesContent = <p>No expenses found.</p>;
+  // This method checks if the data is not found
 
-  if (filteredExpenses.length > 0) {
-    expensesContent = filteredExpenses.map((expense) => (
-      <ExpenseItem
-        key={expense.id}
-        title={expense.title}
-        amount={expense.amount}
-        date={expense.date}
-      />
-    ));
-  }
+  // let expensesContent = <p>No expenses found.</p>;
+
+  // if (filteredExpenses.length > 0) {
+  //   expensesContent = filteredExpenses.map((expense) => (
+  //     <ExpenseItem
+  //       key={expense.id}
+  //       title={expense.title}
+  //       amount={expense.amount}
+  //       date={expense.date}
+  //     />
+  //   ));
+  // }
 
   console.log('testttttttttt');
   console.log(props.items);
@@ -61,9 +65,11 @@ import ExpensesFilter from './ExpensesFilter';
             amount = {expense.amount}
             date = {expense.date}
          />
-    ))} */}
 
-    {expensesContent}
+    ))} */}
+    <ExpensesChart expenses = {filteredExpenses} />
+    <ExpensesList items = {filteredExpenses}/>
+    
 
      {/* <ExpenseItem 
      title = {props.items[0].title}
